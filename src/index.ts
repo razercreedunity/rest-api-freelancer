@@ -11,7 +11,7 @@ import mongoose from 'mongoose';
 const app = express();
 
 app.use(cors({
-  origin: 'https://freelancers-application.vercel.app/',
+  origin: 'https://freelancers-application.vercel.app',
   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
   methods: 'GET, POST, PUT, DELETE, PATCH, GETALL',
   credentials: true
