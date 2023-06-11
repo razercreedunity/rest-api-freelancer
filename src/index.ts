@@ -11,11 +11,9 @@ import mongoose from 'mongoose';
 const app = express();
 
 app.use(cors({
-  origin: 'https://freelancers-application.vercel.app',
-  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-  methods: 'GET, POST, PUT, DELETE, PATCH, GETALL',
-  credentials: true
+  credentials: true,
 }));
+
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
