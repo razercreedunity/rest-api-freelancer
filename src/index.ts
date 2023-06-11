@@ -15,7 +15,12 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
+app.use(cors({
+  origin: 'https://freelancers-application.vercel.app/',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  methods: 'GET, POST, PUT, DELETE, PATCH',
+  credentials: true
+}));
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
