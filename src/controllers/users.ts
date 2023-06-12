@@ -61,17 +61,23 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
     const { id } = req.params;
     const { username, email, phone_number, skillsets, hobby } = req.body;
 
-    if (!username) {
+    if (!username || !email || !phone_number || !skillsets || !hobby) {
       return res.sendStatus(400);
     }
 
-const updatedUser = await updateUserById(id, {
-  username,
-  email,
-  phone_number,
-  skillsets,
-  hobby,
-});
+    const existingUser = await getUserByEmail(email);
+  
+    if (existingUser) {
+      return res.sendStatus(400);
+    }
+    
+    const updatedUser = await updateUserById(id, {
+    username,
+    email,
+    phone_number,
+    skillsets,
+    hobby,
+    });
 
     return res.status(200).json(updatedUser).end();
   } catch (error) {
