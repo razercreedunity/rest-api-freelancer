@@ -1,7 +1,7 @@
 import express from 'express';
 
 import { deleteUserById, getUsers, updateUserById } from '../db/users';
-import { getUserByEmail, createUser } from '../db/users';
+import { getUserByEmail, createUser, getUserByEmailExisting } from '../db/users';
 
 export const insertUser = async (req: express.Request, res: express.Response) => {
   try {
@@ -65,7 +65,7 @@ export const updateUser = async (req: express.Request, res: express.Response) =>
       return res.sendStatus(400);
     }
 
-    const existingUser = await getUserByEmail(email);
+    const existingUser = await getUserByEmailExisting(id, email);
   
     if (existingUser) {
       return res.sendStatus(400);
